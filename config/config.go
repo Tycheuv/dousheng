@@ -34,8 +34,9 @@ var Info = DBInfo{
 func GetDatabase() {
 	var ok bool
 	var info = DBInfo{
-		MaxCon:    30,   //最大连接数
-		MaxOpCon:  3000, //最大打开连接数
+		Database:  "dousheng", //数据库名
+		MaxCon:    30,         //最大连接数
+		MaxOpCon:  3000,       //最大打开连接数
 		Charset:   "utf8mb4",
 		ParseTime: "True",
 		Loc:       "Local",
