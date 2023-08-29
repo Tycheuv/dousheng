@@ -42,9 +42,9 @@ go run main.go router.go
 
 ```text
 dousheng
-|	main.go //项目入口
-|	router.go //初始化路由
-|	README
+|		main.go //项目入口
+|		router.go //初始化路由
+|		README
 |
 |--config
 |		config.go //配置文件
