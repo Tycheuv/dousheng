@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"dousheng/config"
 	"dousheng/gormdb"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -24,7 +23,6 @@ func Feed(c *gin.Context) {
 		var FavoriteVideoID []int64
 		gormdb.DB.Model(&Favorite{}).Where("token = ?", token).Pluck("video_id", &FavoriteVideoID) //查找喜欢的视频ID
 		for k := range DemoVideos {
-			DemoVideos[k].PlayURL = config.WebUrl +
 			for _, fid := range FavoriteVideoID {
 				if DemoVideos[k].Id == fid {
 					DemoVideos[k].IsFavorite = true
