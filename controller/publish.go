@@ -51,7 +51,7 @@ func Publish(c *gin.Context) {
 	// 本地存储路径，视频真实路径
 	saveFile := filepath.Join("./public/", finalName)
 	// web运行，视频url地址
-	simulatorFile := fmt.Sprintf("%s/static/%s", config.WebUrl, finalName)
+	simulatorFile := fmt.Sprintf("https://%s/static/%s", config.WebUrl, finalName)
 	//coverFile := fmt.Sprintf("/sdcard/Pictures/coverimg/work%d",user.Id) //封面
 	err = gormdb.DB.Create(&Video{
 		AuthorID:      user.Id,
