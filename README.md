@@ -22,8 +22,8 @@ go mod tidy
 3. 创建数据库
 
 ```text
-Mysql>create database dousheng;
-*本地运行需自行配置config/config.go中数据库信息
+Mysql> create database dousheng;
+*可在config/config.go下配置改为其它数据库
 ```
 
 4. 运行

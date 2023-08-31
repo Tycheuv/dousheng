@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"os"
 )
 
@@ -61,8 +62,15 @@ func GetDatabase() {
 	return
 }
 
-// VideoSavePath 项目运行网络ip地址或域名
-var VideoSavePath = "" //例如 http://192.168.1.1:8080
+func GetUrl() {
+	url, ok := os.LookupEnv("paas_url")
+	if !ok {
+		fmt.Println("Url获取失败")
+		return
+	} else {
+		WebUrl = url
+	}
+}
 
-// Host 项目运行端口
-var Host = "8080"
+// VideoSavePath 项目运行网络ip地址或域名
+var WebUrl = "http://127.0.1.1:8080" //例如 http://192.168.1.1:8080
