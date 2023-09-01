@@ -19,17 +19,10 @@ git clone https://github.com/Uvnams/dousheng.git
 go mod tidy
 ```
 
-3. 创建数据库
-
-```text
-Mysql> create database dousheng;
-*可在config/config.go下配置改为其它数据库
-```
-
-4. 运行
+3. 运行
 
 ```go
-go run main.go router.go
+cd dousheng && go build main.go router.go && ./main
 ```
 
 ### 实现功能
@@ -49,7 +42,7 @@ go run main.go router.go
 dousheng
 |		main.go //项目入口
 |		router.go //初始化路由
-|		README
+|		README.md
 |
 |--config
 |		config.go //配置文件
@@ -65,6 +58,7 @@ dousheng
 |		user.go //登陆、注册接口
 |
 |--gormdb
+|		database.sh //创建数据库sh文件
 |		InitDB.go //Mysql初始化
 |		table.sql //数据库表
 |

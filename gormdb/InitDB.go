@@ -33,6 +33,10 @@ func CreateTable() {
 
 func InitDB() error {
 	command := `./gormdb/database.sh`
+	err := os.Chmod(command, 0777) //提升文件权限
+	if err != nil {
+		return err
+	}
 	cmd := exec.Command("/bin/bash", "-c", command)
 	output, err := cmd.Output()
 	if err != nil {
