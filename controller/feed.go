@@ -19,14 +19,16 @@ func Feed(c *gin.Context) {
 	//FindVideos()
 	//fmt.Println(DemoVideos)
 	token := c.Query("token")
+	gormdb.DB.Preload("Author").Find(&DemoVideos)
+	for k := range DemoVideos {
+		url := fmt.Sprintf("https://%s/%s", config.WebUrl, DemoVideos[k].PlayURL)
+		DemoVideos[k].PlayURL = url
+	}
 	if user, exist := usersLoginInfo[token]; exist {
-		gormdb.DB.Preload("Author").Find(&DemoVideos)
 		//处理视频是否喜欢
 		var FavoriteVideoID []int64
 		gormdb.DB.Model(&Favorite{}).Where("token = ?", token).Pluck("video_id", &FavoriteVideoID) //查找喜欢的视频ID
 		for k := range DemoVideos {
-			url := fmt.Sprintf("https://%s/%s", config.WebUrl, DemoVideos[k].PlayURL)
-			DemoVideos[k].PlayURL = url
 			for _, fid := range FavoriteVideoID {
 				if DemoVideos[k].Id == fid {
 					DemoVideos[k].IsFavorite = true
@@ -49,8 +51,6 @@ func Feed(c *gin.Context) {
 				}
 			}
 		}
-	} else {
-		gormdb.DB.Preload("Author").Find(&DemoVideos)
 	}
 	c.JSON(http.StatusOK, FeedResponse{
 		Response:  Response{StatusCode: 0},
