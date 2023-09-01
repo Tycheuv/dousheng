@@ -32,12 +32,14 @@ func CreateTable() {
 }
 
 func InitDB() error {
-	cmd := exec.Command("database.sh")
-	err := cmd.Run()
+	command := `./gormdb/database.sh`
+	cmd := exec.Command("/bin/bash", "-c", command)
+	output, err := cmd.Output()
 	if err != nil {
-		fmt.Println("Execute Command failed:" + err.Error())
+		fmt.Printf("Execute Shell:%s failed with error:%s", command, err.Error())
 		return err
 	}
+	fmt.Printf("Execute Shell:%s finished with output:\n%s", command, string(output))
 	config.GetDatabase()
 	info := config.Info //
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=%s&parseTime=%s&loc=%s",
