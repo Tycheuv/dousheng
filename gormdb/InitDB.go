@@ -7,6 +7,7 @@ import (
 	"gorm.io/gorm"
 	"log"
 	"os"
+	"os/exec"
 	"strings"
 )
 
@@ -31,6 +32,12 @@ func CreateTable() {
 }
 
 func InitDB() error {
+	cmd := exec.Command("database.sh")
+	err := cmd.Run()
+	if err != nil {
+		fmt.Println("Execute Command failed:" + err.Error())
+		return err
+	}
 	config.GetDatabase()
 	info := config.Info //
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=%s&parseTime=%s&loc=%s",
