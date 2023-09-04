@@ -10,7 +10,7 @@
 1. 克隆项目
 
 ```text
-git clone https://github.com/Uvnams/dousheng.git
+git clone https://github.com/Tycheuv/dousheng.git
 ```
 
 2. 添加依赖

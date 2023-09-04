@@ -1,13 +1,22 @@
 package main
 
 import (
+	"dousheng/config"
 	"dousheng/controller"
 	"github.com/gin-gonic/gin"
 )
 
 func initRouter(r *gin.Engine) {
-
 	r.Static("/static", "./public")
+
+	r.LoadHTMLGlob("templates/*")
+
+	//home page
+	r.GET("/", func(c *gin.Context) {
+		c.HTML(200, "index.html", gin.H{
+			"URL": "https://" + config.WebUrl,
+		})
+	})
 
 	apiRouter := r.Group("/douyin")
 
