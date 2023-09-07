@@ -25,6 +25,12 @@ go mod tidy
 cd dousheng && go build main.go router.go && ./main
 ```
 
+4. 使用步骤
+
+```
+启动后数据库默认清空，请先进行注册登陆添加视频等操作
+```
+
 ### 实现功能
 
 实现了接口文档中给出的所有接口
